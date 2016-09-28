@@ -1,0 +1,191 @@
+--
+--	Conversion of Design01.v to vh2:
+--
+--	Cypress Semiconductor - WARP Version 6.3 IR 41
+--	Tue Sep 27 23:11:32 2016
+--
+
+USE cypress.cypress.all;
+USE cypress.rtlpkg.all;
+ENTITY top_RTL IS
+ATTRIBUTE part_name of top_RTL:TYPE IS "cpsoc3";
+END top_RTL;
+--------------------------------------------------------
+ARCHITECTURE R_T_L OF top_RTL IS
+TERMINAL Net_2993 : bit;
+TERMINAL Net_3701 : bit;
+TERMINAL Net_3702 : bit;
+TERMINAL Net_2323 : bit;
+TERMINAL Net_290 : bit;
+SIGNAL \TCPWM_1:Net_81\ : bit;
+SIGNAL \TCPWM_1:Net_75\ : bit;
+SIGNAL \TCPWM_1:Net_69\ : bit;
+SIGNAL \TCPWM_1:Net_66\ : bit;
+SIGNAL \TCPWM_1:Net_82\ : bit;
+SIGNAL \TCPWM_1:Net_72\ : bit;
+SIGNAL Net_2291 : bit;
+SIGNAL Net_2290 : bit;
+SIGNAL Net_2292 : bit;
+SIGNAL Net_2293 : bit;
+SIGNAL Net_2294 : bit;
+SIGNAL Net_2289 : bit;
+SIGNAL Net_1704 : bit;
+TERMINAL Net_4800 : bit;
+TERMINAL Net_4801 : bit;
+TERMINAL Net_2297 : bit;
+TERMINAL Net_2298 : bit;
+TERMINAL Net_3224 : bit;
+SIGNAL \BLE:Net_15\ : bit;
+SIGNAL \BLE:Net_53\ : bit;
+SIGNAL Net_3174 : bit;
+SIGNAL \BLE:Net_55\ : bit;
+TERMINAL Net_4255 : bit;
+TERMINAL Net_4252 : bit;
+TERMINAL Net_2260 : bit;
+TERMINAL Net_2259 : bit;
+TERMINAL Net_2257 : bit;
+TERMINAL Net_2255 : bit;
+TERMINAL Net_2253 : bit;
+TERMINAL Net_2335 : bit;
+BEGIN
+
+\TCPWM_1:Net_69\ <=  ('1') ;
+
+\TCPWM_1:Net_75\ <=  ('0') ;
+
+GND_1:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"Gnd_v1_0",
+		port_names=>"T1",
+		width=>1)
+	PORT MAP(connect=>Net_2993);
+L_1:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"Inductor_v1_0",
+		port_names=>"T1, T2",
+		width=>2)
+	PORT MAP(connect=>(Net_2993, Net_3701));
+C_1:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"Capacitor_v1_0",
+		port_names=>"T1, T2",
+		width=>2)
+	PORT MAP(connect=>(Net_3701, Net_3702));
+LED1:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"LED_v1_0",
+		port_names=>"A, K",
+		width=>2)
+	PORT MAP(connect=>(Net_2323, Net_290));
+\TCPWM_1:cy_m0s8_tcpwm_1\:cy_m0s8_tcpwm_v1_0
+	GENERIC MAP(cy_registers=>"")
+	PORT MAP(clock=>Net_1704,
+		capture=>\TCPWM_1:Net_75\,
+		count=>\TCPWM_1:Net_69\,
+		reload=>\TCPWM_1:Net_75\,
+		stop=>\TCPWM_1:Net_75\,
+		start=>\TCPWM_1:Net_75\,
+		underflow=>Net_2291,
+		overflow=>Net_2290,
+		compare_match=>Net_2292,
+		line_out=>Net_2293,
+		line_out_compl=>Net_2294,
+		interrupt=>Net_2289);
+Clock_1:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"52ff77bd-00c4-4fb6-82c0-dc80adbdf078",
+		source_clock_id=>"",
+		divisor=>0,
+		period=>"31250000000",
+		is_direct=>'0',
+		is_digital=>'0')
+	PORT MAP(clock_out=>Net_1704,
+		dig_domain_out=>open);
+PWR_1:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"Power_v1_0",
+		port_names=>"T1",
+		width=>1)
+	PORT MAP(connect=>Net_4800);
+LED1_1:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"LED_v1_0",
+		port_names=>"A, K",
+		width=>2)
+	PORT MAP(connect=>(Net_4800, Net_4801));
+GND_3:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"Gnd_v1_0",
+		port_names=>"T1",
+		width=>1)
+	PORT MAP(connect=>Net_2297);
+R_1:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"Resistor_v1_0",
+		port_names=>"T1, T2",
+		width=>2)
+	PORT MAP(connect=>(Net_4801, Net_2298));
+Battery:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"Battery_v1_0",
+		port_names=>"Neg, Pos",
+		width=>2)
+	PORT MAP(connect=>(Net_2297, Net_3224));
+\BLE:cy_m0s8_ble\:cy_m0s8_ble_v1_0
+	GENERIC MAP(cy_registers=>"")
+	PORT MAP(interrupt=>\BLE:Net_15\,
+		rf_ext_pa_en=>open);
+\BLE:bless_isr\:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10")
+	PORT MAP(int_signal=>\BLE:Net_15\);
+\BLE:LFCLK\:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"f7e4c631-7f18-4a80-b8dc-a27c020488da/5ae6fa4d-f41a-4a35-8821-7ce70389cb0c",
+		source_clock_id=>"9A908CA6-5BB3-4db0-B098-959E5D90882B",
+		divisor=>0,
+		period=>"0",
+		is_direct=>'1',
+		is_digital=>'0')
+	PORT MAP(clock_out=>\BLE:Net_53\,
+		dig_domain_out=>open);
+isr_1:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10")
+	PORT MAP(int_signal=>Net_2289);
+PWR:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"Power_v1_0",
+		port_names=>"T1",
+		width=>1)
+	PORT MAP(connect=>Net_2323);
+GND_4:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"Gnd_v1_0",
+		port_names=>"T1",
+		width=>1)
+	PORT MAP(connect=>Net_4255);
+SW_5:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"SwitchSPST_v1_0",
+		port_names=>"T1, T2",
+		width=>2)
+	PORT MAP(connect=>(Net_4252, Net_2260));
+GND_2:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"Gnd_v1_0",
+		port_names=>"T1",
+		width=>1)
+	PORT MAP(connect=>Net_4252);
+SW_3:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"SwitchSPST_v1_0",
+		port_names=>"T1, T2",
+		width=>2)
+	PORT MAP(connect=>(Net_4252, Net_2259));
+SW_4:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"SwitchSPST_v1_0",
+		port_names=>"T1, T2",
+		width=>2)
+	PORT MAP(connect=>(Net_4255, Net_2257));
+SW_1:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"SwitchSPST_v1_0",
+		port_names=>"T1, T2",
+		width=>2)
+	PORT MAP(connect=>(Net_4255, Net_2255));
+SW_2:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"SwitchSPST_v1_0",
+		port_names=>"T1, T2",
+		width=>2)
+	PORT MAP(connect=>(Net_4255, Net_2253));
+R_2:cy_annotation_universal_v1_0
+	GENERIC MAP(comp_name=>"Resistor_v1_0",
+		port_names=>"T1, T2",
+		width=>2)
+	PORT MAP(connect=>(Net_290, Net_2335));
+
+END R_T_L;
